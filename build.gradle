@@ -6,10 +6,8 @@ plugins {
     id "application"
 }
 
-
-
 version "0.1"
-group "dk.fitfit"
+group "dk.fitfit.whoami"
 
 repositories {
     mavenCentral()
@@ -40,6 +38,8 @@ dependencies {
     testImplementation "io.micronaut.test:micronaut-test-kotlintest"
     testImplementation "io.mockk:mockk:1.9.3"
     testImplementation "io.kotlintest:kotlintest-runner-junit5:3.3.2"
+
+    implementation 'io.github.microutils:kotlin-logging:1.7.7'
 }
 
 test.classpath += configurations.developmentOnly
