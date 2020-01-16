@@ -20,7 +20,7 @@ private val logger = KotlinLogging.logger {}
 
 @Controller
 class WhoamiController {
-    @Get("/")
+    @Get(value = "/", produces = ["text/html;charset=UTF-8"])
     fun whoami(): String {
         logger.info("Whoami request")
         return InetAddress.getLocalHost().hostName
