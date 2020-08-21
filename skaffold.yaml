@@ -1,4 +1,4 @@
-apiVersion: skaffold/v1
+apiVersion: skaffold/v2beta6
 kind: Config
 build:
   artifacts:
@@ -6,3 +6,10 @@ build:
       jib: {}
   tagPolicy:
     gitCommit: {}
+deploy:
+  helm:
+    releases:
+      - name: whoami-mn
+        chartPath: ./helm/
+        artifactOverrides:
+          image.name: tons/whoami-mn
