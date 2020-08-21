@@ -10,6 +10,7 @@ deploy:
   helm:
     releases:
       - name: whoami-mn
+        namespace: whoami-mn
         chartPath: ./helm/
         artifactOverrides:
           image.name: tons/whoami-mn
