@@ -5,6 +5,7 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.runtime.Micronaut
 import mu.KotlinLogging
 import java.net.InetAddress
+import javax.inject.Singleton
 
 object Application {
     @JvmStatic
@@ -19,10 +20,19 @@ object Application {
 private val logger = KotlinLogging.logger {}
 
 @Controller
-class WhoamiController {
+class WhoAmIController(private val whoAmIService: WhoAmIService) {
     @Get(value = "/", produces = ["text/html;charset=UTF-8"])
-    fun whoami(): String {
+    fun whoAmI(): String {
         logger.info("Whoami request")
-        return InetAddress.getLocalHost().hostName
+        return whoAmIService.whoAmI()
     }
+}
+
+interface WhoAmIService {
+    fun whoAmI(): String
+}
+
+@Singleton
+class WhoAmIServiceImpl: WhoAmIService {
+    override fun whoAmI(): String = InetAddress.getLocalHost().hostName
 }
