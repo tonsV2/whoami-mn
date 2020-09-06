@@ -7,6 +7,7 @@ build:
   tagPolicy:
     gitCommit: {}
 deploy:
+  kubeContext: default
   helm:
     releases:
       - name: whoami-mn
