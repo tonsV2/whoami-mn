@@ -10,5 +10,5 @@ skaffold dev --port-forward
 
 # HTTP Request
 ```bash
-http :8080 "Host:whoami-mn.fitfit.dk"
+http :8080 "Host:whoami-mn.dev.fitfit.dk"
 ```
