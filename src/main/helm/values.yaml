@@ -40,18 +40,8 @@ service:
 
 ingress:
   enabled: true
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    certmanager.k8s.io/issuer: "letsencrypt-prod"
-    certmanager.k8s.io/acme-challenge-type: http01
-  hosts:
-    - host: whoami-mn.fitfit.dk
-      paths:
-        - /
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  hostname: whoami-mn.dev.fitfit.dk
+  certIssuer: letsencrypt-staging
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
