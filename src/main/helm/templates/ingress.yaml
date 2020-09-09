@@ -11,10 +11,12 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "whoami-mn.labels" . | nindent 4 }}
+{{ if hasKey .Values.ingress "certIssuer" }}
   annotations:
     kubernetes.io/ingress.class: traefik
     certmanager.k8s.io/issuer: {{ .Values.ingress.certIssuer | quote }}
     certmanager.k8s.io/acme-challenge-type: http01
+{{- end }}
 spec:
   rules:
     - host: {{ .Values.ingress.hostname | quote }}
