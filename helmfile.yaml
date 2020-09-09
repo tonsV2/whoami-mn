@@ -1,7 +1,7 @@
 releases:
   - name: whoami-mn
     namespace: whoami-mn-{{ requiredEnv "WHOAMI_ENVIRONMENT" }}
-    chart: src/main/helm
+    chart: tons/whoami-mn
     version: {{ requiredEnv "WHOAMI_VERSION" | quote }}
     installed: {{ env "WHOAMI_INSTALLED" | default "false" }}
     values:
