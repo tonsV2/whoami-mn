@@ -1,0 +1,17 @@
+releases:
+  - name: whoami-mn
+    namespace: whoami-mn-{{ requiredEnv "WHOAMI_ENVIRONMENT" }}
+    chart: src/main/helm
+    version: {{ requiredEnv "WHOAMI_VERSION" | quote }}
+    installed: {{ env "WHOAMI_INSTALLED" | default "false" }}
+    values:
+      - ingress:
+          enabled: true
+          hostname: {{ requiredEnv "WHOAMI_HOSTNAME" }}
+          certIssuer: {{ requiredEnv "WHOAMI_CERT_ISSUER" }}
+
+repositories:
+  - name: tons
+    url: http://helm-charts.fitfit.dk
+    username: {{ requiredEnv "CHARTMUSEUM_AUTH_USER" }}
+    password: {{ requiredEnv "CHARTMUSEUM_AUTH_PASS" }}
