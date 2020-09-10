@@ -21,7 +21,7 @@ private val logger = KotlinLogging.logger {}
 
 @Controller
 class WhoAmIController(private val whoAmIService: WhoAmIService) {
-    @Get(value = "/", produces = ["text/html;charset=UTF-8"])
+    @Get(value = "/", produces = ["text/plain;charset=UTF-8"])
     fun whoAmI(): String {
         logger.info("Whoami request")
         return whoAmIService.whoAmI()
