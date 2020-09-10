@@ -19,15 +19,6 @@ object Application {
 
 private val logger = KotlinLogging.logger {}
 
-@Controller
-class WhoAmIController(private val whoAmIService: WhoAmIService) {
-    @Get(value = "/", produces = ["text/plain;charset=UTF-8"])
-    fun whoAmI(): String {
-        logger.info("Whoami request")
-        return whoAmIService.whoAmI()
-    }
-}
-
 interface WhoAmIService {
     fun whoAmI(): String
 }
@@ -35,4 +26,13 @@ interface WhoAmIService {
 @Singleton
 class WhoAmIServiceImpl: WhoAmIService {
     override fun whoAmI(): String = InetAddress.getLocalHost().hostName
+}
+
+@Controller
+class WhoAmIController(private val whoAmIService: WhoAmIService) {
+    @Get(value = "/", produces = ["text/plain;charset=UTF-8"])
+    fun whoAmI(): String {
+        logger.info("Whoami request")
+        return whoAmIService.whoAmI()
+    }
 }
