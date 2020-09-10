@@ -59,7 +59,7 @@ dependencies {
 
 test.classpath += configurations.developmentOnly
 
-mainClassName = "dk.fitfit.Application"
+mainClassName = "dk.fitfit.whoami.Application"
 
 test {
     useJUnitPlatform()
