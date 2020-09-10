@@ -2,24 +2,30 @@ releases:
   - name: whoami-mn
     namespace: whoami-mn-{{ .Environment.Name }}
     chart: tons/whoami-mn
-    version: {{ index .Values "chartVersion-whoami-mn" }}
-    installed: {{ .Values.installed }}
+    version: {{ (index .Values "chartVersions").whoamiMn }}
+    installed: {{ (index .Values "installed").whoamiMn }}
     values:
       - environments/{{ .Environment.Name }}/whoami-mn-values.yaml
 
 environments:
   dev:
     values:
-      - installed: true
-      - chartVersion-whoami-mn: 0.3.0
+      - installed:
+          whoamiMn: true
+      - chartVersions:
+          whoamiMn: 0.3.0
   test:
     values:
-      - installed: true
-      - chartVersion-whoami-mn: 0.3.0
+      - installed:
+          whoamiMn: true
+      - chartVersions:
+          whoamiMn: 0.3.0
   prod:
     values:
-      - installed: true
-      - chartVersion-whoami-mn: 0.3.0
+      - installed:
+          whoamiMn: true
+      - chartVersions:
+          whoamiMn: 0.2.0
 
 repositories:
   - name: tons
