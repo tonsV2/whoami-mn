@@ -1,14 +1,25 @@
 releases:
   - name: whoami-mn
-    namespace: whoami-mn-{{ requiredEnv "WHOAMI_ENVIRONMENT" }}
+    namespace: whoami-mn-{{ .Environment.Name }}
     chart: tons/whoami-mn
-    version: {{ requiredEnv "WHOAMI_VERSION" | quote }}
-    installed: {{ env "WHOAMI_INSTALLED" | default "false" }}
+    version: {{ index .Values "chartVersion-whoami-mn" }}
+    installed: {{ .Values.installed }}
     values:
-      - ingress:
-          enabled: true
-          hostname: {{ requiredEnv "WHOAMI_HOSTNAME" }}
-          certIssuer: {{ requiredEnv "WHOAMI_CERT_ISSUER" }}
+      - environments/{{ .Environment.Name }}/whoami-mn-values.yaml
+
+environments:
+  dev:
+    values:
+      - installed: true
+      - chartVersion-whoami-mn: 0.3.0
+  test:
+    values:
+      - installed: true
+      - chartVersion-whoami-mn: 0.3.0
+  prod:
+    values:
+      - installed: true
+      - chartVersion-whoami-mn: 0.3.0
 
 repositories:
   - name: tons

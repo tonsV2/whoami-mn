@@ -28,3 +28,8 @@ Update version (or versions) in src/main/helm/Chart.yaml
 ```bash
 helm push src/main/helm tons --username $CHARTMUSEUM_AUTH_USER --password $CHARTMUSEUM_AUTH_PASS
 ```
+
+# Deploy using Helmfile
+```bash
+helmfile -e dev sync
+```
