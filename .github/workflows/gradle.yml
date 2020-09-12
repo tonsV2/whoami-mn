@@ -40,15 +40,26 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image with Jib
-      run: ./gradlew jib
+      run: ./gradlew jibDockerBuild
+
+    - name: Push Docker image
+      run: docker push tons/whoami-mn:latest
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Lint Helm Chart
       uses: WyriHaximus/github-action-helm3@v2
       with:
         exec: helm lint src/main/helm/
 
-    - name: Run Skaffold pipeline
-      uses: hiberbee/github-action-skaffold@latest
+    - name: Deploy to Kubernetes
+      uses: WyriHaximus/github-action-helm3@v2
       with:
-        command: run
-        namespace: whoami-mn
+        exec: helm upgrade --set image.name=tons/whoami-mn:latest --namespace whoami-mn-dev whoami-mn src/main/helm/
+
+#    - name: Run Skaffold pipeline
+#      uses: hiberbee/github-action-skaffold@latest
+#      with:
+#        command: run
+#        namespace: whoami-mn
