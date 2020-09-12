@@ -16,8 +16,7 @@ jib {
         image = "adoptopenjdk:11.0.5_10-jre-hotspot"
     }
     to {
-        image = "tons/whoami-mn"
-        tags = [project.version]
+        image = "tons/whoami-mn:$project.version"
     }
     container {
         user = "nobody"
