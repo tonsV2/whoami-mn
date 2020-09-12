@@ -19,7 +19,7 @@ jobs:
       with:
         java-version: 1.8
 
-    - name: Run tests
+    - name: Run unit tests
       run: ./gradlew test
 
     - name: Authenticate with Docker registry
@@ -30,6 +30,21 @@ jobs:
 
     - name: Build Docker image with Jib
       run: ./gradlew jib --image tons/whoami-mn:ci
+
+    - name: Integration test Docker image
+      run: |
+        set -x
+
+        docker run -d -p 8080:8080 --name whoami-mn tons/whoami-mn:ci
+        sleep 3
+
+        docker ps | grep -q whoami-mn
+
+        http_code=$(curl -s -o /dev/null -w "%{http_code}" 127.0.0.1:8080)
+        test $http_code -eq 200
+
+        status=$(curl -s 127.0.0.1:8080/health | jq -r '.status')
+        test $status = "UP"
 
     - name: Lint Helm Chart
       uses: WyriHaximus/github-action-helm3@v2
