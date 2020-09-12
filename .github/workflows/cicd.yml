@@ -46,6 +46,8 @@ jobs:
         status=$(curl -s 127.0.0.1:8080/health | jq -r '.status')
         test $status = "UP"
 
+        docker stop whoami-mn
+
     - name: Lint Helm Chart
       uses: WyriHaximus/github-action-helm3@v2
       with:
