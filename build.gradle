@@ -51,7 +51,10 @@ dependencies {
     runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
     testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     testImplementation "io.micronaut.test:micronaut-test-kotlintest"
+    testImplementation "io.mockk:mockk:1.9.3"
     testImplementation "io.kotlintest:kotlintest-runner-junit5:3.3.2"
+    testImplementation "io.micronaut.test:micronaut-test-junit5:1.1.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.1.0"
 
     implementation 'io.github.microutils:kotlin-logging:1.8.3'
 }
