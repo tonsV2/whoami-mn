@@ -18,6 +18,10 @@ metadata:
     certmanager.k8s.io/acme-challenge-type: http01
 {{- end }}
 spec:
+  tls:
+    - secretName: {{ $fullName }}-tls
+      hosts:
+        - {{ .Values.ingress.hostname | quote }}
   rules:
     - host: {{ .Values.ingress.hostname | quote }}
       http:
