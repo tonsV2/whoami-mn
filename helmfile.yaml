@@ -29,6 +29,6 @@ releases:
 
 repositories:
   - name: tons
-    url: http://helm-charts.fitfit.dk
+    url: https://helm-charts.fitfit.dk
     username: {{ requiredEnv "CHARTMUSEUM_AUTH_USER" }}
     password: {{ requiredEnv "CHARTMUSEUM_AUTH_PASS" }}
