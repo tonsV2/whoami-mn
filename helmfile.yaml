@@ -4,19 +4,19 @@ environments:
       - installed:
           whoamiMn: true
       - version:
-          whoamiMn: 0.3.0
+          whoamiMn: 0.4.0
   test:
     values:
       - installed:
           whoamiMn: true
       - version:
-          whoamiMn: 0.3.0
+          whoamiMn: 0.4.0
   prod:
     values:
       - installed:
           whoamiMn: true
       - version:
-          whoamiMn: 0.2.0
+          whoamiMn: 0.4.0
 
 releases:
   - name: whoami-mn
