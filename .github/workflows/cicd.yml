@@ -31,6 +31,12 @@ jobs:
     - name: Build Docker image with Jib
       run: ./gradlew jib --image tons/whoami-mn:ci
 
+    - name: Scan Docker image
+      uses: anchore/scan-action@v1
+      with:
+        image-reference: tons/whoami-mn:ci
+        fail-build: true
+
     - name: Integration test Docker image
       run: |
         set -x
