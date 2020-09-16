@@ -29,7 +29,7 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image with Jib
-      run: ./gradlew jib --image tons/whoami-mn:ci
+      run: ./gradlew jibDockerBuild --image tons/whoami-mn:ci
 
     - name: Scan Docker image
       uses: anchore/scan-action@v1
@@ -53,6 +53,9 @@ jobs:
         test $status = "UP"
 
         docker stop whoami-mn
+
+    - name: Push Docker image
+      run: docker push tons/whoami-mn:ci
 
     - name: Lint Helm Chart
       uses: WyriHaximus/github-action-helm3@v2
