@@ -13,7 +13,7 @@ group "dk.fitfit.whoami"
 
 jib {
     from {
-        image = "adoptopenjdk:11.0.5_10-jre-hotspot"
+        image = "adoptopenjdk/openjdk11:jre-11.0.8_10-alpine"
     }
     to {
         image = "tons/whoami-mn:$project.version"
