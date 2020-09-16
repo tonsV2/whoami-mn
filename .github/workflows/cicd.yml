@@ -32,7 +32,7 @@ jobs:
       run: ./gradlew jibDockerBuild --image tons/whoami-mn:ci
 
     - name: Scan Docker image
-      uses: anchore/scan-action@v1
+      uses: anchore/scan-action@v1.0.9
       with:
         image-reference: tons/whoami-mn:ci
         fail-build: true
