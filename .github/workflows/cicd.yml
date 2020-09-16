@@ -29,19 +29,19 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image with Jib
-      run: ./gradlew jibDockerBuild --image tons/whoami-mn:ci
+      run: ./gradlew jibDockerBuild --image tons/whoami-mn:dev
 
     - name: Scan Docker image
       uses: anchore/scan-action@v1.0.9
       with:
-        image-reference: tons/whoami-mn:ci
+        image-reference: tons/whoami-mn:dev
         fail-build: true
 
     - name: Integration test Docker image
       run: |
         set -x
 
-        docker run -d -p 8080:8080 --name whoami-mn tons/whoami-mn:ci
+        docker run -d -p 8080:8080 --name whoami-mn tons/whoami-mn:dev
         sleep 3
 
         docker ps | grep -q whoami-mn
@@ -55,7 +55,7 @@ jobs:
         docker stop whoami-mn
 
     - name: Push Docker image
-      run: docker push tons/whoami-mn:ci
+      run: docker push tons/whoami-mn:dev
 
     - name: Lint Helm Chart
       uses: WyriHaximus/github-action-helm3@v2
@@ -65,5 +65,5 @@ jobs:
     - name: Deploy to Kubernetes
       uses: WyriHaximus/github-action-helm3@v2
       with:
-        exec: helm --kube-context nuc upgrade --install --set image.name=tons/whoami-mn:ci --set image.pullPolicy=Always --namespace whoami-mn-dev whoami-mn src/main/helm/
+        exec: helm --kube-context nuc upgrade --install --set image.name=tons/whoami-mn:dev --set image.pullPolicy=Always --namespace whoami-mn-dev whoami-mn src/main/helm/
         kubeconfig: '${{ secrets.KUBE_CONFIG }}'
