@@ -13,7 +13,6 @@ metadata:
     {{- include "whoami-mn.labels" . | nindent 4 }}
 {{- if hasKey .Values.ingress "certIssuer" }}
   annotations:
-    kubernetes.io/ingress.class: traefik
     ingress.kubernetes.io/ssl-redirect: "true"
     cert-manager.io/cluster-issuer: {{ .Values.ingress.certIssuer | quote }}
 {{- end }}
