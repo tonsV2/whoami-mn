@@ -5,21 +5,21 @@ environments:
       - installed:
           whoamiMn: true
       - version:
-          whoamiMn: 0.4.0
+          whoamiMn: 0.5.0
   test:
     values:
       - kubeContext: nuc
       - installed:
           whoamiMn: true
       - version:
-          whoamiMn: 0.4.0
+          whoamiMn: 0.5.0
   prod:
     values:
       - kubeContext: nuc
       - installed:
           whoamiMn: true
       - version:
-          whoamiMn: 0.4.0
+          whoamiMn: 0.5.0
 
 releases:
   - name: whoami-mn
