@@ -1,18 +1,21 @@
 environments:
   dev:
     values:
+      - kubeContext: nuc
       - installed:
           whoamiMn: true
       - version:
           whoamiMn: 0.4.0
   test:
     values:
+      - kubeContext: nuc
       - installed:
           whoamiMn: true
       - version:
           whoamiMn: 0.4.0
   prod:
     values:
+      - kubeContext: nuc
       - installed:
           whoamiMn: true
       - version:
@@ -24,6 +27,7 @@ releases:
     chart: tons/whoami-mn
     version: {{ .Values.version.whoamiMn }}
     installed: {{ .Values.installed.whoamiMn }}
+    kubeContext: {{ .Values.kubeContext }}
     values:
       - environments/{{ .Environment.Name }}/whoami-mn-values.yaml
 
