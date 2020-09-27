@@ -65,5 +65,15 @@ jobs:
     - name: Deploy to Kubernetes
       uses: WyriHaximus/github-action-helm3@v2
       with:
-        exec: helm --kube-context nuc upgrade --install --set image.name=tons/whoami-mn:dev --set image.pullPolicy=Always --set ingress.certIssuer=letsencrypt-staging --set ingress.hostname=whoami-mn.dev.fitfit.dk --namespace whoami-mn-dev whoami-mn src/main/helm/
+        exec: |
+          helm --kube-context nuc \
+          upgrade \
+          --install \
+          --set image.name=tons/whoami-mn:dev \
+          --set image.pullPolicy=Always \
+          --set ingress.certIssuer=letsencrypt-staging \
+          --set ingress.hostname=whoami-mn.dev.fitfit.dk \
+          --namespace whoami-mn-dev \
+          whoami-mn \
+          src/main/helm/
         kubeconfig: '${{ secrets.KUBE_CONFIG }}'
