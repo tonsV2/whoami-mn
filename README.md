@@ -17,7 +17,7 @@ skaffold dev
 Perform a http request using HTTPie
 
 ```bash
-http :8080 "Host:whoami-mn.dev.fitfit.dk"
+http :8080 "Host:whoami-mn.127.0.0.1.nip.io"
 ```
 
 # Release
