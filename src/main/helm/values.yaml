@@ -41,6 +41,7 @@ service:
 ingress:
   enabled: true
   hostname: whoami-mn.127.0.0.1.nip.io
+#  certIssuer: letsencrypt-staging | letsencrypt-prod
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
