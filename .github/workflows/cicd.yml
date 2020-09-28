@@ -46,10 +46,10 @@ jobs:
 
         docker ps | grep -q whoami-mn
 
-        http_code=$(curl -s -o /dev/null -w "%{http_code}" 127.0.0.1:8080)
+        http_code=$(curl --silent -o /dev/null -w "%{http_code}" 127.0.0.1:8080)
         test $http_code -eq 200
 
-        status=$(curl -s 127.0.0.1:8080/health | jq -r '.status')
+        status=$(curl --silent 127.0.0.1:8080/health | jq -r '.status')
         test $status = "UP"
 
         docker stop whoami-mn
@@ -77,3 +77,17 @@ jobs:
           whoami-mn \
           src/main/helm/
         kubeconfig: '${{ secrets.KUBE_CONFIG }}'
+
+    - name: Confirm deployment is running
+      run: |
+        set -x
+
+        sleep 7
+
+        # Confirm SSL redirect
+        http_code=$(curl --silent -o /dev/null -w "%{http_code}" http://whoami-mn.dev.fitfit.dk)
+        test $http_code -eq 301
+
+        # Confirm the service is up
+        status=$(curl --silent --insecure https://whoami-mn.dev.fitfit.dk/health | jq -r '.status')
+        test $status = "UP"
