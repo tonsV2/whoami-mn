@@ -8,12 +8,19 @@ Executing an HTTP request to / will return the hostname of the server
 ./gradlew run
 ```
 
+## HTTP Request
+Perform a http request using HTTPie
+
+```bash
+http :8080
+```
+
 # Development
 ```bash
 skaffold dev
 ```
 
-# HTTP Request
+## HTTP Request
 Perform a http request using HTTPie
 
 ```bash
