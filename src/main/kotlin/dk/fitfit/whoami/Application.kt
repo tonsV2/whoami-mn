@@ -24,7 +24,7 @@ interface WhoAmIService {
 }
 
 @Singleton
-class WhoAmIServiceImpl: WhoAmIService {
+class WhoAmIServiceImpl : WhoAmIService {
     override fun whoAmI(): String = InetAddress.getLocalHost().hostName
 }
 
@@ -32,7 +32,7 @@ class WhoAmIServiceImpl: WhoAmIService {
 class WhoAmIController(private val whoAmIService: WhoAmIService) {
     @Get(value = "/", produces = ["text/plain;charset=UTF-8"])
     fun whoAmI(): String {
-        logger.info("Whoami request")
+        logger.info("WhoAmI request")
         return whoAmIService.whoAmI()
     }
 }
