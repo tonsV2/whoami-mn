@@ -78,7 +78,7 @@ jobs:
           src/main/helm/
         kubeconfig: '${{ secrets.KUBE_CONFIG }}'
 
-    - name: Confirm deployment is running
+    - name: Test deployment
       run: |
         set -x
 
