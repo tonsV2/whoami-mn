@@ -34,7 +34,7 @@ jobs:
     - name: Scan Docker image
       uses: anchore/scan-action@v2
       with:
-        image-reference: tons/whoami-mn:dev
+        image: tons/whoami-mn:dev
         fail-build: true
 
     - name: Integration test Docker image
