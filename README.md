@@ -1,5 +1,18 @@
-# Who Am I?
-Simple Micronaut "whoami" microservice
+# Table of contents
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+- [Introduction](#introduction)
+- [Run using Gradle](#run-using-gradle)
+  - [HTTP Request](#http-request)
+- [Development](#development)
+  - [HTTP Request](#http-request-1)
+- [Release](#release)
+  - [Release Docker image](#release-docker-image)
+  - [Release Helm chart](#release-helm-chart)
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Introduction
+Simple Micronaut "Who Am I" microservice
 
 Executing an HTTP request to / will return the hostname of the server
 
